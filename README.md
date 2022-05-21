@@ -4,8 +4,8 @@ Building a rest API automation framework from scratch.
 
 To achieve this I will be using the below tool:
 
-Java
-Maven
-Rest Assured
-Cucumber (BDD Approach)
-Log4j for logging
+1. Java
+2. Maven
+3. Rest Assured
+4. Cucumber (BDD Approach)
+5. Log4j for logging
