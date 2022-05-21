@@ -9,3 +9,4 @@ To achieve this I will be using the below tool:
 3. Rest Assured
 4. Cucumber (BDD Approach)
 5. Log4j for logging
+6. jackson-databind
