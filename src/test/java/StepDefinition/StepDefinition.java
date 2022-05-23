@@ -36,8 +36,8 @@ public class StepDefinition extends Utils {
 
     }
 
-    @When("User calls AddPlaceAPI with Post http request")
-    public void user_calls_add_place_api_with_post_http_request() throws IOException
+    @When("User calls {string} with Post http request")
+    public void user_calls_add_place_api_with_post_http_request(String string) throws IOException
     {
         responseSpecification =new ResponseSpecBuilder()
                 .expectStatusCode(200)

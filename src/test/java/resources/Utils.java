@@ -10,21 +10,26 @@ import java.io.*;
 import java.util.Properties;
 
 public class Utils {
-    RequestSpecification requestSpecification;
+    public static RequestSpecification requestSpecification;
 
     public RequestSpecification requestSpecificationForRequest() throws IOException
     {
-        // Add place to google API
-        // Using Request and Response spec Builder
-        // Using Print stream for logging
-        PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
-        requestSpecification =new RequestSpecBuilder()
-                .setBaseUri(getGlobalValue("BaseUri"))
-                .addQueryParam("key", "qaclick123")
-                .addFilter(RequestLoggingFilter.logRequestTo(log))
-                .addFilter(ResponseLoggingFilter.logResponseTo(log))
-                .setContentType(ContentType.JSON).build();
+        if (requestSpecification==null)
+        {
+            // Add place to google API
+            // Using Request and Response spec Builder
+            // Using Print stream for logging
+            PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
+            requestSpecification =new RequestSpecBuilder()
+                    .setBaseUri(getGlobalValue("BaseUri"))
+                    .addQueryParam("key", "qaclick123")
+                    .addFilter(RequestLoggingFilter.logRequestTo(log))
+                    .addFilter(ResponseLoggingFilter.logResponseTo(log))
+                    .setContentType(ContentType.JSON).build();
+            return requestSpecification;
+        }
         return requestSpecification;
+
     }
 
     public static String getGlobalValue(String key) throws IOException {
