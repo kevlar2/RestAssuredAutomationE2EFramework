@@ -1,5 +1,7 @@
 package StepDefinition;
 
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,6 +13,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.junit.runner.RunWith;
+import resources.PlaceAPIResources;
 import resources.TestDataBuild;
 import resources.Utils;
 
@@ -36,13 +39,15 @@ public class StepDefinition extends Utils {
 
     }
 
-    @When("User calls {string} with Post http request")
-    public void user_calls_add_place_api_with_post_http_request(String string) throws IOException
+    @When("User calls {string} with {string} http request")
+    public void user_calls_add_place_api_with_post_http_request(String resource, String httpMethod) throws IOException
     {
+        PlaceAPIResources resourceAPI = PlaceAPIResources.valueOf(resource);
+        System.out.println(resourceAPI.getResource());
         responseSpecification =new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON).build();
-        response = res.when().post("/maps/api/place/add/json")
+        response = res.when().post(resourceAPI.getResource())
                 .then().spec(responseSpecification).extract().response();
 
     }
@@ -62,4 +67,8 @@ public class StepDefinition extends Utils {
         assertEquals(js.get(strArg1).toString(),strArg2);
     }
 
+    @And("verify place_Id created maps to {string} using {string}")
+    public void verifyPlace_IdCreatedMapsToUsing(String name, String arg1) {
+        // Get API call
+    }
 }
