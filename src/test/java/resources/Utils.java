@@ -34,7 +34,15 @@ public class Utils {
 
     public static String getGlobalValue(String key) throws IOException {
         Properties prop = new Properties();
-        FileInputStream fis =new FileInputStream((System.getProperty("user.dir") + "\\src\\test\\java\\resources\\global.properties"));
+        String os = System.getProperty("os.name");
+        FileInputStream fis;
+        if(os.contains("Mac"))
+        {
+             fis =new FileInputStream((System.getProperty("user.dir") + "//src//test//java//resources//global.properties"));
+        } else
+        {
+             fis =new FileInputStream((System.getProperty("user.dir") + "\\src\\test\\java\\resources\\global.properties"));
+        }
         prop.load(fis);
         return  prop.getProperty(key);
 
