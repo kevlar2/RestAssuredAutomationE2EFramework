@@ -1,5 +1,6 @@
 /Users/kevinorukele/Javaprojects/gitjavaprojects/RestAssuredAutomationE2EFramework/src/test/java/resources/TestDataBuild.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/RestAssuredAutomationE2EFramework/src/test/java/resources/Utils.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/RestAssuredAutomationE2EFramework/src/test/java/resources/PlaceAPIResources.java
+/Users/kevinorukele/Javaprojects/gitjavaprojects/RestAssuredAutomationE2EFramework/src/test/java/StepDefinition/Hooks.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/RestAssuredAutomationE2EFramework/src/test/java/StepDefinition/StepDefinition.java
 /Users/kevinorukele/Javaprojects/gitjavaprojects/RestAssuredAutomationE2EFramework/src/test/java/cucumber/Options/TestRunner.java

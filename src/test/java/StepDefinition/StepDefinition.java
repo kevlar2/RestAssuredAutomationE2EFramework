@@ -30,6 +30,7 @@ public class StepDefinition extends Utils {
     RequestSpecification res;
     Response response;
     TestDataBuild addPlace = new TestDataBuild();
+    static String place_id;
 
 
     @Given("^Add place payload (.+), (.+), (.+)$")
@@ -47,8 +48,17 @@ public class StepDefinition extends Utils {
         responseSpecification =new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON).build();
-        response = res.when().post(resourceAPI.getResource())
-                .then().spec(responseSpecification).extract().response();
+        if(httpMethod.equalsIgnoreCase("POST"))
+        {
+            response = res.when().post(resourceAPI.getResource())
+                    .then().spec(responseSpecification).extract().response();
+        }
+        else if(httpMethod.equalsIgnoreCase("GET"))
+        {
+            response = res.when().get(resourceAPI.getResource())
+                    .then().spec(responseSpecification).extract().response();
+        }
+
 
     }
 
@@ -60,15 +70,24 @@ public class StepDefinition extends Utils {
     }
 
     @Then("{string} in response body is {string}")
-    public void something_in_response_body_is_something(String strArg1, String strArg2) throws Throwable
+    public void something_in_response_body_is_something(String strArg1, String ExpectedValue) throws Throwable
     {
-        String responseString = response.asString();
-        JsonPath js= new JsonPath(responseString);
-        assertEquals(js.get(strArg1).toString(),strArg2);
+        assertEquals(getJsonPath(response,strArg1).toString(),ExpectedValue);
     }
 
     @And("verify place_Id created maps to {string} using {string}")
-    public void verifyPlace_IdCreatedMapsToUsing(String name, String arg1) {
+    public void verifyPlace_IdCreatedMapsToUsing(String ExpectedName, String resource) throws IOException {
         // Get API call
+        place_id = (String) getJsonPath(response, "place_id");
+        res = given().spec(requestSpecificationForRequest().queryParam("place_id", place_id));
+        user_calls_add_place_api_with_post_http_request(resource, "GET");
+        String actualGetResponseName = (String) getJsonPath(response, "name");
+        assertEquals(actualGetResponseName,ExpectedName);
+    }
+
+    @Given("DeletePlace Payload")
+    public void delete_place_payload() throws IOException {
+       res= given().spec(requestSpecificationForRequest().body(addPlace.deletPlacePayload(place_id)));
+
     }
 }
