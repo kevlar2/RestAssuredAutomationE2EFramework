@@ -34,7 +34,8 @@ public class Utils {
 
     }
 
-    public static String getGlobalValue(String key) throws IOException {
+    public static String getGlobalValue(String key) throws IOException
+    {
         Properties prop = new Properties();
         String os = System.getProperty("os.name");
         FileInputStream fis;

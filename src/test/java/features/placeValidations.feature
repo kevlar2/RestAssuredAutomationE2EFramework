@@ -1,6 +1,6 @@
 Feature: Validating Place API's
 
-    @AddPlace
+    @AddPlace @Regression @Sanity
   Scenario Outline: Verify if Place is being successfully added using AddPlaceAPI
     Given Add place payload <name>, <language>, <address>
     When User calls "AddPlaceAPI" with "Post" http request
@@ -15,8 +15,8 @@ Feature: Validating Place API's
         | Kevin Academy | Spanish     | London Road       |
         | Jamie Academy | USA        | New York Road     |
 
-    @DeletePlace
-  Scenario: Verify is delete place functionality is working
+    @DeletePlace @Regression
+  Scenario: Verify if delete place functionality is working
 
     Given DeletePlace Payload
     When User calls "DeletePlaceAPI" with "Post" http request
