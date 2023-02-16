@@ -19,6 +19,6 @@ Feature: Validating Place API's
   Scenario: Verify if delete place functionality is working
 
     Given DeletePlace Payload
-    When User calls "DeletePlaceAPI" with "Post" http request
+    When User calls "DeletePlaceAPI" with "Delete" http request
     Then The API call is successful with status code 200
     And "status" in response body is "OK"

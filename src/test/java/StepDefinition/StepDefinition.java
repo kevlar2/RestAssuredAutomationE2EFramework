@@ -58,6 +58,11 @@ public class StepDefinition extends Utils {
             response = res.when().get(resourceAPI.getResource())
                     .then().spec(responseSpecification).extract().response();
         }
+        else if(httpMethod.equalsIgnoreCase("DELETE"))
+        {
+            response = res.when().delete(resourceAPI.getResource())
+                    .then().spec(responseSpecification).extract().response();
+        }
 
 
     }
